@@ -46,44 +46,44 @@ const products = [
         categoryId: 6
     }];
 
-    const categories=[
-{
-    id:1,
-    name:"Monitor"
-},
-{
-    id:2,
-    name:"Telefon"
-},
-{
-    id:3,
-    name:"Beyaz Eşya"
-},
-{
-    id:4,
-    name:"Harici Bellekler"
-},
-{
-    id:5,
-    name:"Akıllı Ev Eşyaları"
-},
-{
-    id:6,
-    name:"Bilgisayarlar"
-}];
+const categories = [
+    {
+        id: 1,
+        name: "Monitor"
+    },
+    {
+        id: 2,
+        name: "Telefon"
+    },
+    {
+        id: 3,
+        name: "Beyaz Eşya"
+    },
+    {
+        id: 4,
+        name: "Harici Bellekler"
+    },
+    {
+        id: 5,
+        name: "Akıllı Ev Eşyaları"
+    },
+    {
+        id: 6,
+        name: "Bilgisayarlar"
+    }];
 
 //  "", '', ``=>
-    
-    const sanalAlan=document.createDocumentFragment();//ürünlerin list alanı için hayal bir alan oluşturduk
-    var productDivEl=document.getElementById("products");
 
+function renderProducts() {
+    const sanalAlan = document.createDocumentFragment();//ürünlerin list alanı için hayal bir alan oluşturduk
+    var productDivEl = document.getElementById("products");
     //denemedeneme
-    products.forEach(urun=>{
-        
-const divEl=document.createElement("div");//div elementini oluşturur
-divEl.className="col-md-3";
-//oluşturulan div elementine ürün listesi için forEach ile HTML kodlarını dinamik data olan Products datalarını oluşturalım
-divEl.innerHTML=`
+    products.forEach(urun => {
+
+        const divEl = document.createElement("div");//div elementini oluşturur
+        divEl.className = "col-md-3";
+        //oluşturulan div elementine ürün listesi için forEach ile HTML kodlarını dinamik data olan Products datalarını oluşturalım
+        divEl.innerHTML = `
                         <div class="card">
                                 <div class="card-body">
                                     <div class="card-img-actions">
@@ -108,42 +108,53 @@ divEl.innerHTML=`
                                     <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i>to cart</button>
                                 </div>
                         </div>`;
-                        sanalAlan.appendChild(divEl);//ürünleri sanalAlan a ekler ve yeni bir elemente eklemek için hazırda bulunur
-                       //productDivEl.appendChild(divEl);
+        sanalAlan.appendChild(divEl);//ürünleri sanalAlan a ekler ve yeni bir elemente eklemek için hazırda bulunur
+        //productDivEl.appendChild(divEl);
 
-});
+    });
 
-productDivEl.appendChild(sanalAlan);
+    productDivEl.appendChild(sanalAlan);
+}
 
-// yukarıda kategorılerı tanımladık.onun üzerinden devam ediyorum
-
-// <li class="list-group-item d-flex justify-content-between align-items-center">
-//                        Telefon
-//                       <span class="badge badge-primary badge-pill">2</span>
-//
-//                    </li>
-//                    <li class="list-group-item d-flex justify-content-between align-items-center">
-//                        Harici Bellekler
-//                        <span class="badge badge-primary badge-pill">1</span>
-//                    </li>-->
+function renderCategories() {
 
 
-const catEl=document.getElementById("categories"); 
-const frag=document.createDocumentFragment(); //sanalalan için tanımlama yaptım
 
-categories.forEach(cat =>{
-   const li=document.createElement("li");
-   li.className="list-group-item d-flex justify-content-between align-items-center";
-   li.setAttribute("data-cat-id",cat.id);
-   li.setAttribute("data-cat-name",cat.name);
 
-   li.innerHTML=`
+    // yukarıda kategorılerı tanımladık.onun üzerinden devam ediyorum
+
+    // <li class="list-group-item d-flex justify-content-between align-items-center">
+    //                        Telefon
+    //                       <span class="badge badge-primary badge-pill">2</span>
+    //
+    //                    </li>
+    //                    <li class="list-group-item d-flex justify-content-between align-items-center">
+    //                        Harici Bellekler
+    //                        <span class="badge badge-primary badge-pill">1</span>
+    //                    </li>-->
+
+
+    const catEl = document.getElementById("categories");
+    const frag = document.createDocumentFragment(); //sanalalan için tanımlama yaptım
+
+    categories.forEach(cat => {
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.setAttribute("data-cat-id", cat.id);
+        li.setAttribute("data-cat-name", cat.name);
+
+        li.innerHTML = `
    ${cat.name}
    <span class="badge badge-primary badge-pill"></span>`
 
-   frag.appendChild(li);
-});
+        frag.appendChild(li);
+    });
 
- catEl.appendChild(frag);
+    catEl.appendChild(frag);
 
- 
+}
+
+renderCategories();
+renderProducts();
+
+// ürün kategorısıne tıklandıgında farklı urunler lıstelensın
