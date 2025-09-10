@@ -77,6 +77,7 @@ const products = [
     const sanalAlan=document.createDocumentFragment();//ürünlerin list alanı için hayal bir alan oluşturduk
     var productDivEl=document.getElementById("products");
 
+    //denemedeneme
     products.forEach(urun=>{
         
 const divEl=document.createElement("div");//div elementini oluşturur
