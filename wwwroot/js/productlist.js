@@ -1,11 +1,14 @@
+//sabit ürünler
+
 const products = [
+    //bilgisayarlar
     {
         id: 1,
-        name: "Tohsiba Monitor HD",
+        name: "Laptop-1",
         description: "25 inç 1788X1066 Led ekran, HDMI ve VGA girişli",
         price: "15.250",
         brand: "Toshiba",
-        image: "toshiba1",
+        image: "image/bilgisayar.png",
         categoryId: 1
     },
     {
@@ -14,7 +17,7 @@ const products = [
         description: "25 inç 1788X1066 Led ekran, HDMI ve VGA girişli",
         price: "15.250",
         brand: "Toshiba",
-        image: "toshiba1",
+        image: "image/bilgisayar.png",
         categoryId: 1
 
     },
@@ -24,7 +27,7 @@ const products = [
         description: "25 inç 1788X1066 Led ekran, HDMI ve VGA girişli",
         price: "15.250",
         brand: "Toshiba",
-        image: "toshiba1",
+        image: "image/bilgisayar.png",
         categoryId: 1
     },
     {
@@ -33,7 +36,7 @@ const products = [
         description: "test monitör açıklaması",
         price: "19.750",
         brand: "Toshiba",
-        image: "toshiba1",
+        image: "image/bilgisayar.png",
         categoryId: 1
     },
     {
@@ -42,14 +45,110 @@ const products = [
         description: "i-5 , 1 TB SSD, 17 inç Laptop ",
         price: "15.250",
         brand: "Toshiba",
-        image: "toshiba1",
+        image: "image/bilgisayar.png",
+        categoryId: 1
+    },
+    //telefonlar
+    {
+        id: 6,
+        name: "Iphone 16",
+        description:"6.1 inches 256gb",
+        price: "15.250",
+        brand: "Iphone",
+        image: "image/iphone16.png",
+        categoryId: 2
+    },
+    {
+        id: 7,
+        name: "Iphone 16 Pro Max",
+        description:"6.9 inches 256gb",
+        price: "15.250",
+        brand: "Iphone",
+        image: "image/iphone16promax.png",
+        categoryId: 2
+    },
+    {
+        id: 7,
+        name: "Iphone 17 Pro ",
+        description:"6.3 inches 512gb",
+        price: "15.250",
+        brand: "Iphone",
+        image: "image/iphone17pro.png",
+        categoryId: 2
+    },
+    //beyaz eşya
+    {
+        id: 8,
+        name: "Vestel Davlumbaz Seti ",
+        price: "15.250",
+        brand: "Vestel",
+        image: "image/davlumbaz.png",
+        categoryId: 3
+    },
+    {
+        id: 9,
+        name: "Vestel Çamaşır Makinesi ",
+        price: "15.250",
+        brand: "Vestel",
+        image: "image/camasir.png",
+        categoryId: 3
+    },
+    //haricibellek
+    {
+        id: 10,
+        name: "Ledger Harici Bellek ",
+        price: "15.250",
+        brand: "Ledger",
+        internalStorage:"16 gb",
+        image: "image/haricibellek.png",
+        categoryId: 4
+    },
+    //akıllı ev eşyası
+    {
+        id: 11,
+        name: "Xenon Smart Bebek Kamerası",
+        price: "15.250",
+        brand: "Xenon",
+        image: "image/bebekkamerasi.png",
+        categoryId: 5
+    },
+    {
+        id: 12,
+        name: "Vestel Robot Süpürge",
+        price: "15.250",
+        brand: "Vestel",
+        image: "image/robotsupurge.png",
+        categoryId: 5   
+     },
+     {
+        id: 13,
+        name: "VintageVo Nem Alma Cihazı",
+        price: "15.250",
+        brand: "VintageVo",
+        image: "image/nemalma.png",
+        categoryId: 5
+     },
+     //monitörler
+     {
+        id: 14,
+        name: "Acer Monitör",
+        price: "15.250",
+        brand: "Acer",
+        screenSize:"21 inches",
+        image: "image/monitör.png",
         categoryId: 6
-    }];
+     },
+
+
+
+];
+
+//sabit kategoriler
 
 const categories = [
     {
         id: 1,
-        name: "Monitor"
+        name: "Bilgisayarlar"
     },
     {
         id: 2,
@@ -69,45 +168,48 @@ const categories = [
     },
     {
         id: 6,
-        name: "Bilgisayarlar"
+        name: "Monitörler"
     }];
 
 //  "", '', ``=>
 
-function renderProducts() {
-    const sanalAlan = document.createDocumentFragment();//ürünlerin list alanı için hayal bir alan oluşturduk
-    var productDivEl = document.getElementById("products");
-    //denemedeneme
-    products.forEach(urun => {
+//ürünleri göster
 
+function renderProducts(liste) {
+    const sanalAlan = document.createDocumentFragment();//ürünlerin list alanı için hayal bir alan oluşturduk
+    const productDivEl = document.getElementById("products");
+    productDivEl.innerHTML = ""; //temizledik
+
+    liste.forEach(function(urun) {
         const divEl = document.createElement("div");//div elementini oluşturur
         divEl.className = "col-md-3";
         //oluşturulan div elementine ürün listesi için forEach ile HTML kodlarını dinamik data olan Products datalarını oluşturalım
         divEl.innerHTML = `
-                        <div class="card">
-                                <div class="card-body">
+                        <div class="card product-card">
+                                <div class="img-box">
                                     <div class="card-img-actions">
-                                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" >
+                                        <img src="${urun.image}" class="img-responsive product-img center-block" alt= "${urun.name}" >
                                     </div>
                                 </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2">
-                                            <a href="#" class="text-default mb-2" data-abc="true">${urun.name}</a>
-                                        </h6>
-                                        <a href="#" class="text-muted" data-abc="true">${urun.description}</a>
-                                    </div>
-                                    <h3 class="mb-0 font-weight-semibold">${urun.price}</h3>
-                                    <div>
-                                        <i class="fa fa-star star"></i>
-                                        <i class="fa fa-star star"></i>
-                                        <i class="fa fa-star star"></i>
-                                        <i class="fa fa-star star"></i>
-                                    </div>
-                                    <div class="text-muted mb-3">34 reviews</div>
-                                    <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i>to cart</button>
+                                <div class="card-body bg-light text-center content-box">
+                                        <h6 class="font-weight-semibold mb-2">${urun.name}</h6>
+                                        <a href="#" class="text-muted" data-abc="true">${urun.description || ""}</a>
+                                        <p class="text-muted" style="margin:6px 0 2px;">${urun.brand || ""}</p>
+                                        <h3 class="mb-0 font-weight-semibold">${urun.price}</h3>
+                                        
+                                          <div class="text-muted mb-3 text-center">34 reviews</div>
+                                          <div class="text-center" style="padding:10px;">
+                                            <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> 
+                                            <i class="fa fa-card-plus mr-2"></i> to cart  
+                                            </button > 
+                                          </div>
                                 </div>
                         </div>`;
+                        const img = document.createElement("img");
+                        img.className="img-responsive product-img center-block";
+                        img.alt=urun.name;
+                        img.src=urun.image || "image/no-image.png";
+                        divEl.querySelector(".img-box").appendChild(img);
         sanalAlan.appendChild(divEl);//ürünleri sanalAlan a ekler ve yeni bir elemente eklemek için hazırda bulunur
         //productDivEl.appendChild(divEl);
 
@@ -116,10 +218,9 @@ function renderProducts() {
     productDivEl.appendChild(sanalAlan);
 }
 
+//kategoriler
+
 function renderCategories() {
-
-
-
 
     // yukarıda kategorılerı tanımladık.onun üzerinden devam ediyorum
 
@@ -135,27 +236,44 @@ function renderCategories() {
 
 
     const catEl = document.getElementById("categories");
-    const frag = document.createDocumentFragment(); //sanalalan için tanımlama yaptım
+    catEl.innerHTML ="";
+    const sanalAlan = document.createDocumentFragment();
 
-    categories.forEach(cat => {
+    categories.forEach(function(cat){
+        const count = products.filter(function(p){return p.categoryId === cat.id;}).length;
+
         const li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
         li.setAttribute("data-cat-id", cat.id);
-        li.setAttribute("data-cat-name", cat.name);
-
         li.innerHTML = `
-   ${cat.name}
-   <span class="badge badge-primary badge-pill"></span>`
+          ${cat.name}
+          <span class="badge badge-primary badge-pill">${count}</span>`;
 
-        frag.appendChild(li);
+        sanalAlan.appendChild(li);
     });
 
-    catEl.appendChild(frag);
+    catEl.appendChild(sanalAlan);
+
+    //class ekle cıkarma
+    catEl.querySelectorAll("li").forEach(function(li){
+        li.addEventListener("mouseover",function(){li.classList.add("list-group-item-primary");});
+        li.addEventListener("mouseout",function(){li.classList.remove("list-group-item-primary");});
+
+        li.addEventListener("click",function(){
+            catEl.querySelectorAll("li").forEach(function(x){x.classList.remove("active");});
+            li.classList.add("active");
+
+            const catId =parseInt(li.getAttribute("data-cat-id"),10);
+            const filtered= products.filter(function(p){return p.categoryId === catId;});
+            renderProducts(filtered);
+        });
+    });
 
 }
 
 renderCategories();
 renderProducts();
+
 
 
 
@@ -165,3 +283,4 @@ renderProducts();
 // 2) kategorı tıklandıgında sadece o kategorıdekı urunler lıstelecek
 // 3) tıklanan kategorının aktif oldugunu gosteren renklendırme(backround)
 // 4) herbır kategorıde kac urun oldugunu gosteren sayı kategorılıstın sonunda parantez ıcınde gosterılecek
+
