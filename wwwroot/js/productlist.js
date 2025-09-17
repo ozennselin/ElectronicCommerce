@@ -121,7 +121,7 @@ const products = [
         categoryId: 5   
      },
      {
-        id: 13,
+        id: 13,//Identity-> kimlik
         name: "VintageVo Nem Alma Cihazı",
         price: "15.250",
         brand: "VintageVo",
@@ -199,7 +199,7 @@ function renderProducts(liste) {
                                         
                                           <div class="text-muted mb-3 text-center">34 reviews</div>
                                           <div class="text-center" style="padding:10px;">
-                                            <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> 
+                                            <button type="button" onclick="AddCart()" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> 
                                             <i class="fa fa-card-plus mr-2"></i> to cart  
                                             </button > 
                                           </div>
@@ -271,8 +271,8 @@ function renderCategories() {
 
 }
 
-renderCategories();
-renderProducts();
+renderCategories(categories);
+renderProducts(products);
 
 
 
