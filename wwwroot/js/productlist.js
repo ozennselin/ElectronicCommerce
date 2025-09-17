@@ -279,8 +279,10 @@ renderProducts(products);
 
 // ödev 15.09.25:
 
-// 1) ürün detay yapılacaqk snıfta yapılanın aynısı
+// 1) ürün detay yapılacaqk snıfta yapılanın aynısı( tıklandıgında ürün ile ilgili detay sayafası acılacak)
 // 2) kategorı tıklandıgında sadece o kategorıdekı urunler lıstelecek
 // 3) tıklanan kategorının aktif oldugunu gosteren renklendırme(backround)
 // 4) herbır kategorıde kac urun oldugunu gosteren sayı kategorılıstın sonunda parantez ıcınde gosterılecek
+//5) productdata ve categoriedata ayrı js sayfası olustur
+
 
