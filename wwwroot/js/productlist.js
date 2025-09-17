@@ -68,7 +68,7 @@ const products = [
         categoryId: 2
     },
     {
-        id: 7,
+        id: 15,
         name: "Iphone 17 Pro ",
         description:"6.3 inches 512gb",
         price: "15.250",
