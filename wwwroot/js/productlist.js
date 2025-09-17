@@ -68,7 +68,7 @@ const products = [
         categoryId: 2
     },
     {
-        id: 15,
+        id: 7,
         name: "Iphone 17 Pro ",
         description:"6.3 inches 512gb",
         price: "15.250",
@@ -121,7 +121,7 @@ const products = [
         categoryId: 5   
      },
      {
-        id: 13,//Identity-> kimlik
+        id: 13,
         name: "VintageVo Nem Alma Cihazı",
         price: "15.250",
         brand: "VintageVo",
@@ -199,7 +199,7 @@ function renderProducts(liste) {
                                         
                                           <div class="text-muted mb-3 text-center">34 reviews</div>
                                           <div class="text-center" style="padding:10px;">
-                                            <button type="button" onclick="AddCart()" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> 
+                                            <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> 
                                             <i class="fa fa-card-plus mr-2"></i> to cart  
                                             </button > 
                                           </div>
@@ -208,7 +208,7 @@ function renderProducts(liste) {
                         const img = document.createElement("img");
                         img.className="img-responsive product-img center-block";
                         img.alt=urun.name;
-                        img.src=urun.image || "image/no-image.png";
+                        img.src=urun.image || "image/no-image.png";// || bu karakter if için vardır
                         divEl.querySelector(".img-box").appendChild(img);
         sanalAlan.appendChild(divEl);//ürünleri sanalAlan a ekler ve yeni bir elemente eklemek için hazırda bulunur
         //productDivEl.appendChild(divEl);
@@ -239,7 +239,8 @@ function renderCategories() {
     catEl.innerHTML ="";
     const sanalAlan = document.createDocumentFragment();
 
-    categories.forEach(function(cat){
+    //categories.forEach(cat=>{
+categories.forEach(function(cat){
         const count = products.filter(function(p){return p.categoryId === cat.id;}).length;
 
         const li = document.createElement("li");
@@ -271,16 +272,16 @@ function renderCategories() {
 
 }
 
-renderCategories(categories);
-renderProducts(products);
+renderCategories();
+renderProducts();
 
 
 
 
 // ödev 15.09.25:
 
-// 1) ürün detay yapılacaqk snıfta yapılanın aynısı
+// 1) ürün detay yapılacaqk snıfta yapılanın aynısı( tıklandıgında ürün ile ilgili detay sayafası acılacak)
 // 2) kategorı tıklandıgında sadece o kategorıdekı urunler lıstelecek
 // 3) tıklanan kategorının aktif oldugunu gosteren renklendırme(backround)
 // 4) herbır kategorıde kac urun oldugunu gosteren sayı kategorılıstın sonunda parantez ıcınde gosterılecek
-
+//5) productdata ve categoriedata ayrı js sayfası olustur
