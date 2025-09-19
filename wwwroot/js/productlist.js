@@ -188,7 +188,7 @@ function renderProducts(liste) {
                         <div class="card product-card">
                                 <div class="img-box">
                                     <div class="card-img-actions">
-                                        <img src="${urun.image}" class="img-responsive product-img center-block" alt= "${urun.name}" >
+                                        <img >
                                     </div>
                                 </div>
                                 <div class="card-body bg-light text-center content-box">
