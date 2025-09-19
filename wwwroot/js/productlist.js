@@ -52,7 +52,7 @@ const products = [
     {
         id: 6,
         name: "Iphone 16",
-        description:"6.1 inches 256gb",
+        description: "6.1 inches 256gb",
         price: "15.250",
         brand: "Iphone",
         image: "image/iphone16.png",
@@ -61,7 +61,7 @@ const products = [
     {
         id: 7,
         name: "Iphone 16 Pro Max",
-        description:"6.9 inches 256gb",
+        description: "6.9 inches 256gb",
         price: "15.250",
         brand: "Iphone",
         image: "image/iphone16promax.png",
@@ -70,7 +70,7 @@ const products = [
     {
         id: 15,
         name: "Iphone 17 Pro ",
-        description:"6.3 inches 512gb",
+        description: "6.3 inches 512gb",
         price: "15.250",
         brand: "Iphone",
         image: "image/iphone17pro.png",
@@ -99,7 +99,7 @@ const products = [
         name: "Ledger Harici Bellek ",
         price: "15.250",
         brand: "Ledger",
-        internalStorage:"16 gb",
+        internalStorage: "16 gb",
         image: "image/haricibellek.png",
         categoryId: 4
     },
@@ -118,26 +118,26 @@ const products = [
         price: "15.250",
         brand: "Vestel",
         image: "image/robotsupurge.png",
-        categoryId: 5   
-     },
-     {
+        categoryId: 5
+    },
+    {
         id: 13,//Identity-> kimlik
         name: "VintageVo Nem Alma Cihazı",
         price: "15.250",
         brand: "VintageVo",
         image: "image/nemalma.png",
         categoryId: 5
-     },
-     //monitörler
-     {
+    },
+    //monitörler
+    {
         id: 14,
         name: "Acer Monitör",
         price: "15.250",
         brand: "Acer",
-        screenSize:"21 inches",
+        screenSize: "21 inches",
         image: "image/monitör.png",
         categoryId: 6
-     },
+    },
 
 
 
@@ -180,7 +180,7 @@ function renderProducts(liste) {
     const productDivEl = document.getElementById("products");
     productDivEl.innerHTML = ""; //temizledik
 
-    liste.forEach(function(urun) {
+    liste.forEach(function (urun) {
         const divEl = document.createElement("div");//div elementini oluşturur
         divEl.className = "col-md-3";
         //oluşturulan div elementine ürün listesi için forEach ile HTML kodlarını dinamik data olan Products datalarını oluşturalım
@@ -199,17 +199,17 @@ function renderProducts(liste) {
                                         
                                           <div class="text-muted mb-3 text-center">34 reviews</div>
                                           <div class="text-center" style="padding:10px;">
-                                            <button type="button" onclick="AddCart()" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> 
+                                            <button type="button" onclick="AddCart(${urun.id})" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> 
                                             <i class="fa fa-card-plus mr-2"></i> to cart  
                                             </button > 
                                           </div>
                                 </div>
                         </div>`;
-                        const img = document.createElement("img");
-                        img.className="img-responsive product-img center-block";
-                        img.alt=urun.name;
-                        img.src=urun.image || "image/no-image.png";
-                        divEl.querySelector(".img-box").appendChild(img);
+        const img = document.createElement("img");
+        img.className = "img-responsive product-img center-block";
+        img.alt = urun.name;
+        img.src = urun.image || "image/no-image.png";
+        divEl.querySelector(".img-box").appendChild(img);
         sanalAlan.appendChild(divEl);//ürünleri sanalAlan a ekler ve yeni bir elemente eklemek için hazırda bulunur
         //productDivEl.appendChild(divEl);
 
@@ -236,11 +236,11 @@ function renderCategories() {
 
 
     const catEl = document.getElementById("categories");
-    catEl.innerHTML ="";
+    catEl.innerHTML = "";
     const sanalAlan = document.createDocumentFragment();
 
-    categories.forEach(function(cat){
-        const count = products.filter(function(p){return p.categoryId === cat.id;}).length;
+    categories.forEach(function (cat) {
+        const count = products.filter(function (p) { return p.categoryId === cat.id; }).length;
 
         const li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
@@ -255,16 +255,16 @@ function renderCategories() {
     catEl.appendChild(sanalAlan);
 
     //class ekle cıkarma
-    catEl.querySelectorAll("li").forEach(function(li){
-        li.addEventListener("mouseover",function(){li.classList.add("list-group-item-primary");});
-        li.addEventListener("mouseout",function(){li.classList.remove("list-group-item-primary");});
+    catEl.querySelectorAll("li").forEach(function (li) {
+        li.addEventListener("mouseover", function () { li.classList.add("list-group-item-primary"); });
+        li.addEventListener("mouseout", function () { li.classList.remove("list-group-item-primary"); });
 
-        li.addEventListener("click",function(){
-            catEl.querySelectorAll("li").forEach(function(x){x.classList.remove("active");});
+        li.addEventListener("click", function () {
+            catEl.querySelectorAll("li").forEach(function (x) { x.classList.remove("active"); });
             li.classList.add("active");
 
-            const catId =parseInt(li.getAttribute("data-cat-id"),10);
-            const filtered= products.filter(function(p){return p.categoryId === catId;});
+            const catId = parseInt(li.getAttribute("data-cat-id"), 10);
+            const filtered = products.filter(function (p) { return p.categoryId === catId; });
             renderProducts(filtered);
         });
     });
@@ -275,6 +275,49 @@ renderCategories(categories);
 renderProducts(products);
 
 
+
+function AddCart(id) {
+
+    //sessionStorage.setItem("userName","SelinOzen");
+
+    //key=> userName=> burası benzersiz (Unique) olması gereklidir
+    //value ise bir değerdir, farklı kay ler için aynı olabilir
+
+    //sepete ekle denilince o ürünü sepete eklesin
+    //sepete eklerken ürün için Id almak yeterlidir
+
+    let cart = getCart();//sepetUrunleri[]
+    /*var sepetUrunleri = [
+        {
+            productId: 1,
+            quantity: 10
+        },
+        {
+            productId: 2,
+            quantity: 5
+        },
+        {
+            productId: 3,
+            quantity: 5
+        }
+
+
+    ]
+*/
+    cart.push({ productId:id,quantity:1 });//++
+    saveCart(cart);
+    //console.log("Sepetim:", cart)
+
+}
+//*************************************************************************
+function getCart() {//1
+    return JSON.parse(sessionStorage.getItem("sepet") || "[]");//1=> ürünleri getir
+}
+
+function saveCart(cart) {
+    sessionStorage.setItem("sepet", JSON.stringify(cart));//ürünlerş kaydet
+
+}
 
 
 // ödev 15.09.25:

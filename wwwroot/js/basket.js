@@ -148,31 +148,24 @@ const products = [
 
 ];
 
-function AddCart(id){
 
-    //sessionStorage.setItem("userName","SelinOzen");
-    
-    //key=> userName=> burası benzersiz (Unique) olması gereklidir
-    //value ise bir değerdir, farklı kay ler için aynı olabilir
-
-    //sepete ekle denilince o ürünü sepete eklesin
-    //sepete eklerken ürün için Id almak yeterlidir
-   var cartProduct= sessionStorage.getItem("sepet",id);
-
-}
 
 
 
 function CartDetail(){
 
-    cartProduct.forEach( element=> {
+var getirUrunler=   sessionStorage.getItem("sepet");
+getirUrunler.array.forEach(element => {
+    
+});
+    /*cartProduct.forEach( element=> {
 
         
 
 
         
     });
-
+*/
 
 
 }
