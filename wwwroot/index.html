@@ -9,19 +9,10 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="css/menu.css" rel="stylesheet">
     <link href="css/productlist.css" rel="stylesheet">
-
-    
-    
-
-
-
-    <!------ Include the above in your HEAD tag ---------->
-
-
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" id="menu">
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -43,10 +34,10 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false">Hesap <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                            id="hesap">Hesap <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Giriş</a></li>
+                            <li><a href="login.html" id="loginInfo" onclick="RemoveUser()">Giriş</a></li>
                             <li><a href="#">Üye Ol</a></li>
                         </ul>
                     </li>
@@ -61,7 +52,6 @@
 
             <div style="display: none;">
                 <ul class="list-group" id="categories">
-
                 </ul>
             </div>
             <div class="col-md-12">
@@ -71,20 +61,14 @@
             </div>
         </div>
     </div>
-
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   
     <script src="js/menu.js"></script>
     <script src="js/basket.js"></script>
     <script src="js/productsData.js"></script>
     <script src="js/categoriesData.js"></script>
-
     <script src="js/productlist.js"></script>
-    
-    
-
-
+    <script src="js/login.js"></script>
 </body>
 
 </html>

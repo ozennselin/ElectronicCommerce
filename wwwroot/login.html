@@ -4,23 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="css/menu.css" rel="stylesheet">
-    <link href="css/productlist.css" rel="stylesheet">
-
-
-
-
-
-    <!------ Include the above in your HEAD tag ---------->
-
-
+    <link href="css/login.css" rel="stylesheet">
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="container-fluid">
+
+    <div class="container-fluid" id="menu">
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -31,7 +24,6 @@
                 </button>
                 <a class="navbar-brand" href="#">My Store</a>
             </div>
-
 
             <div class="collapse navbar-collapse js-navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -46,30 +38,41 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                             aria-expanded="false" id="hesap">Hesap <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                           <li><a href="login.html" id="loginInfo" onclick="RemoveUser()">Giriş</a></li>
+                          <li><a href="login.html" id="loginInfo" onclick="RemoveUser()">Giriş</a></li>
                             <li><a href="#">Üye Ol</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="basket.html">Sepet (<span id="cart-count">0</span>)</a>
-                    </li>
+                    <li><a href="basket.html">Sepet(<span id="cart-count">0</span>)</a></li>
                 </ul>
-            </div>
-            <!-- /.nav-collapse -->
+            </div><!-- /.nav-collapse -->
         </nav>
     </div>
 
-    <div class="container-fluid">
-        <div id="productDetail">
-                <p>ÜRÜN DETAY</p>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+            </div>
+            <!-- Login Form -->
+            <form >
+                <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+              <!-- <input type="submit" class="fadeIn fourth" onclick="Login()" value="Log In">-->
+                <input type="button" class="fadeIn fourth" onclick="Login()" value="Log In">
+            </form>
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/productsData.js"></script>
-    <script src="js/categoriesData.js"></script>
-    <script src="js/productDetail.js"></script>
-    <script src="js/menu.js"></script>  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/login.js"></script>
     <script src="js/login.js"></script>
 </body>
+
 </html>

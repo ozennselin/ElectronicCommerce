@@ -1,5 +1,10 @@
 
 
+    if (localStorage.getItem("user")) {
+        document.getElementById("hesap").innerHTML=localStorage.getItem("user");
+      document.getElementById("loginInfo").innerHTML=" Çıkış Yap";
+    }
+
 //  "", '', ``=>
 
 //ürünleri göster
@@ -7,7 +12,7 @@
 function renderProducts(liste) {
     const sanalAlan = document.createDocumentFragment();//ürünlerin list alanı için hayal bir alan oluşturduk
     const productDivEl = document.getElementById("products");
-    if(!productDivEl) return;
+    if (!productDivEl) return;
     productDivEl.innerHTML = ""; //temizledik
 
     liste.forEach(function (urun) {
@@ -39,7 +44,7 @@ function renderProducts(liste) {
                                           </div>
                             </div>
                         </div>`;
-        
+
         sanalAlan.appendChild(divEl);
     });
     productDivEl.appendChild(sanalAlan);
@@ -63,7 +68,7 @@ function renderCategories() {
 
 
     const catEl = document.getElementById("categories");
-    if(!catEl) return;
+    if (!catEl) return;
     catEl.innerHTML = "";
     const sanalAlan = document.createDocumentFragment();
 
@@ -101,60 +106,69 @@ function renderCategories() {
 
 // detay sarfası: url den id yi oku p.detaili doldur
 
-function mountProductDetailFromUrl(){
-    const host =document.getElementById("productDetail");
+function mountProductDetailFromUrl() {
+    const host = document.getElementById("productDetail");
     if (!host) return; // detay sayfası değilse çıkarız
 
-    const params=new URLSearchParams(window.location.search);
-    const id = parseInt(params.get("id"),10);
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get("id"), 10);
 
-    if(!Number.isFinite(id)){window.location.href="index.html";
-    return;
-}
+    if (!Number.isFinite(id)) {
+        window.location.href = "index.html";
+        return;
+    }
 
     const urun = products.find(p => p.id === id);
-    if(!urun){host.innerHTML=""; return;}
-    host.innerHTML= urun? renderProducts(urun,{linkToDetail:false}):"";
+    if (!urun) { host.innerHTML = ""; return; }
+    host.innerHTML = urun ? renderProducts(urun, { linkToDetail: false }) : "";
 }
 
 // sayfa yüklendiğinde:
 
 function initPage() {
-    if (document.getElementById("categories"))    renderCategories(categories);
-    if (document.getElementById("products"))      renderProducts(products);
+    if (document.getElementById("categories")) renderCategories(categories);
+    if (document.getElementById("products")) renderProducts(products);
     if (document.getElementById("productDetail")) mountProductDetailFromUrl();
-  }
-  
-  if (document.readyState === "loading") {
+}
+
+if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initPage);
-  } else {
+} else {
     initPage();
-  }
+}
 
 // ürünü sepete ekledik:
-function AddCart(id){
-    const pid= Number(id);
-    const cart = JSON.parse(sessionStorage.getItem("sepet") || "[]");
+function AddCart(id) {
 
-// aynı ürün varsa sayısını arttır:
-const row=cart.find(it => Number(it.productId) === pid);
-if(row){
-    row.quantity = (Number(row.quantity) || 1) +1;
-}else{
-    cart.push({productId:pid,quantity:1});//yoksa yenı ruun ekle
+    //console.log(localStorage.getItem("user"))
+    
+    if (localStorage.getItem("user")){
+        const pid = Number(id);
+        const cart = JSON.parse(sessionStorage.getItem("sepet") || "[]");
+
+        // aynı ürün varsa sayısını arttır:
+        const row = cart.find(it => Number(it.productId) === pid);
+        if (row) {
+            row.quantity = (Number(row.quantity) || 1) + 1;
+        } else {
+            cart.push({ productId: pid, quantity: 1 });//yoksa yenı ruun ekle
+        }
+        sessionStorage.setItem("sepet", JSON.stringify(cart));
+
+
+        if (typeof updateCartCount === "function") updateCartCount();
+
+    }
+    else{
+       window.alert("Üye olmadan sepete ekleme yapılamaz");
+    }
 }
-sessionStorage.setItem("sepet",JSON.stringify(cart));
 
-
-if(typeof updateCartCount === "function") updateCartCount();
-
-}
-
-function getCart(){
+function getCart() {
     return JSON.parse(sessionStorage.getItem("sepet")) || [];
 }
 
-function saveCart(cart){
+function saveCart(cart) {
     sessionStorage.setItem("sepet", JSON.stringify(cart))
 }
 
