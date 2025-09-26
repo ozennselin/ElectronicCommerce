@@ -5,120 +5,77 @@
 //localStorage.setItem();//kalıcı oluyor, ya kod ile komple silinir ya da belli bie süre ile silinmesi sağlanır
 
 
-var getirSepetUrunleri=JSON.parse(sessionStorage.getItem("sepet"));
+var getirSepetUrunleri = JSON.parse(sessionStorage.getItem("sepet")) || [];
 
-/*
-for(let i=0;i<getirSepetUrunleri.length;i++){
-    debugger;
-    console.log(getirSepetUrunleri[i]);
-}
-*/  
 console.log(getirSepetUrunleri);
 
-var detailBasket=document.getElementById("baskettbody");
-var sanalAlan=document.createDocumentFragment();
-var urunAdet=0;
-var totalPrice=0;
-getirSepetUrunleri.forEach( tekUrun=> {
+var detailBasket = document.getElementById("baskettbody");
+var sanalAlan = document.createDocumentFragment();
+var urunAdet = 0;
+var totalPrice = 0;
+getirSepetUrunleri.forEach(tekUrun => {
 
     //tekUrun içinde sadece Id ve quantity var
-    var getirUrun=products.find(k=>k.id==tekUrun.productId);//bir ürünün bütün özelliklerini getirir
-   var producttr=document.createElement("tr");
-    producttr.innerHTML=
-                        `
+    var getirUrun = products.find(k => k.id == tekUrun.productId);//bir ürünün bütün özelliklerini getirir
+    var producttr = document.createElement("tr");
+    producttr.innerHTML =
+        `
                                             <td class="col-sm-8 col-md-6">
                                                 <div class="media">
-                                                    <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                                            src="${getirUrun.image}"
-                                                            style="width: 72px; height: 72px;"> </a>
+                                                    <a class="thumbnail pull-left" href="#"> 
+                                                    <img class="media-object" src="${getirUrun.image}"style="width: 72px; height: 72px;">
+                                                    </a>
                                                     <div class="media-body">
                                                         <h4 class="media-heading"><a href="#">${getirUrun.name}</a></h4>
                                                         <h5 class="media-heading"> by <a href="#">${getirUrun.brand}</a></h5>
-                                                        <span>Status: </span><span class="text-success"><strong>In
-                                                                Stock</strong>${tekUrun.quantity}</span>
+                                                        <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                                    value="${1}">
+                                                <input type="number" class="form-control" value="${tekUrun.quantity}" min="1">
                                             </td>
                                             <td class="col-sm-1 col-md-1 text-center"><strong>${getirUrun.price}</strong></td>
-                                            <td class="col-sm-1 col-md-1 text-center"><strong>${getirUrun.price}</strong></td>
+                                            <td class="col-sm-1 col-md-1 text-center"><strong>${(parseFloat(getirUrun.price) * tekUrun.quantity).toFixed(2)}</strong></td>
                                             <td class="col-sm-1 col-md-1">
-                                                <button type="button" class="btn btn-danger">
+                                                <button type="button" class="btn btn-danger" data-pid="${getirUrun.id}">
                                                     <span class="glyphicon glyphicon-remove"></span> Remove
                                                 </button>
                                             </td>
                           `;
 
-    sanalAlan.appendChild(producttr);  
-    totalPrice=parseFloat(totalPrice)+ parseFloat( getirUrun.price);
+    sanalAlan.appendChild(producttr);
 
+    urunAdet += parseFloat(tekUrun.quantity);
+    //urunAdet=urunAdet+parseFloat(tekUrun.quantity);
+    totalPrice = parseFloat(totalPrice) + parseFloat(getirUrun.price);
+    //totalPrice+=parseFloat(getirUrun.price);
 });
+
+//kargo:
+const kargoBirim = 30;
+const shipping = urunAdet * kargoBirim;
+
+// subtotal,shipping,total
+const tlFormat={style:"currency",currency:"TRY",minimumFractionDigits:2};
+document.getElementById("subtotal").innerHTML = totalPrice.toLocaleString("tr-TR",tlFormat);
+document.getElementById("shipping").innerHTML = shipping.toLocaleString("tr-TR",tlFormat);
+document.getElementById("total").innerHTML = (totalPrice + shipping).toLocaleString("tr-TR",tlFormat);
+
 detailBasket.appendChild(sanalAlan);
 
-document.getElementById("total").innerHTML=totalPrice;
+//remove aktifleştirme:
 
+document.querySelectorAll(".btn-danger").forEach(button => {
+    button.addEventListener("click", function () {
+        const pid = Number(this.getAttribute("data-pid")); // ürünün id sini al
+        let cart = JSON.parse(sessionStorage.getItem("sepet")) || [];
+        cart = cart.filter(item => item.productId !== pid); // sadece tıklanını getir
+        sessionStorage.setItem("sepet", JSON.stringify(cart)); // güncellenen sepeti kaydet
+        location.reload();//sayfayı yenile
+    });
+});
 
-
-/*
-                                        <tr>
-                                            <td class="col-sm-8 col-md-6">
-                                                <div class="media">
-                                                    <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                                            src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
-                                                            style="width: 72px; height: 72px;"> </a>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                                        <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                                        <span>Status: </span><span class="text-success"><strong>In
-                                                                Stock</strong></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                                    value="3">
-                                            </td>
-                                            <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                                            <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
-                                            <td class="col-sm-1 col-md-1">
-                                                <button type="button" class="btn btn-danger">
-                                                    <span class="glyphicon glyphicon-remove"></span> Remove
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-md-6">
-                                                <div class="media">
-                                                    <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                                            src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
-                                                            style="width: 72px; height: 72px;"> </a>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                                        <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                                        <span>Status: </span><span class="text-warning"><strong>Leaves
-                                                                warehouse in 2 - 3 weeks</strong></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="col-md-1" style="text-align: center">
-                                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                                    value="2">
-                                            </td>
-                                            <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                                            <td class="col-md-1 text-center"><strong>$9.98</strong></td>
-                                            <td class="col-md-1">
-                                                <button type="button" class="btn btn-danger">
-                                                    <span class="glyphicon glyphicon-remove"></span> Remove
-                                                </button>
-                                            </td>
-                                        </tr>
-
-
-
-*/
 
 
 

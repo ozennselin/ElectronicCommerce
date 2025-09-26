@@ -12,9 +12,6 @@ function renderProducts(liste) {
 
     liste.forEach(function (urun) {
         const divEl = document.createElement("div");//div elementini oluşturur
-
-        
-
         divEl.className = "col-md-3";
         //oluşturulan div elementine ürün listesi için forEach ile HTML kodlarını dinamik data olan Products datalarını oluşturalım
         divEl.innerHTML = `
@@ -44,9 +41,7 @@ function renderProducts(liste) {
                         </div>`;
         
         sanalAlan.appendChild(divEl);
-
     });
-
     productDivEl.appendChild(sanalAlan);
 }
 
@@ -136,57 +131,30 @@ function initPage() {
     initPage();
   }
 
+// ürünü sepete ekledik:
+function AddCart(id){
+    const pid= Number(id);
+    const cart = JSON.parse(sessionStorage.getItem("sepet") || "[]");
 
-
-
-function AddCart(id) {
-
-    //sessionStorage.setItem("userName","SelinOzen");
-
-    //key=> userName=> burası benzersiz (Unique) olması gereklidir
-    //value ise bir değerdir, farklı kay ler için aynı olabilir
-
-    //sepete ekle denilince o ürünü sepete eklesin
-    //sepete eklerken ürün için Id almak yeterlidir
-
-    let cart = getCart();//sepetUrunleri[]
-    /*var sepetUrunleri = [
-        {
-            productId: 1,
-            quantity: 10
-        },
-        {
-            productId: 2,
-            quantity: 5
-        },
-        {
-            productId: 3,
-            quantity: 5
-        }
-
-
-    ]
-*/
-    cart.push({ productId: id, quantity: 1 });//++
-    saveCart(cart);
-    //console.log("Sepetim:", cart)
-
+// aynı ürün varsa sayısını arttır:
+const row=cart.find(it => Number(it.productId) === pid);
+if(row){
+    row.quantity = (Number(row.quantity) || 1) +1;
+}else{
+    cart.push({productId:pid,quantity:1});//yoksa yenı ruun ekle
 }
-//*************************************************************************
-function getCart() {//1
-    return JSON.parse(sessionStorage.getItem("sepet") || "[]");//1=> ürünleri getir
-}
+sessionStorage.setItem("sepet",JSON.stringify(cart));
 
-function saveCart(cart) {
-    sessionStorage.setItem("sepet", JSON.stringify(cart));//ürünlerş kaydet
+
+if(typeof updateCartCount === "function") updateCartCount();
 
 }
 
+function getCart(){
+    return JSON.parse(sessionStorage.getItem("sepet")) || [];
+}
 
-// ödev 15.09.25:
-
-// 1) ürün detay yapılacaqk snıfta yapılanın aynısı
-// 2) kategorı tıklandıgında sadece o kategorıdekı urunler lıstelecek
-// 3) tıklanan kategorının aktif oldugunu gosteren renklendırme(backround)
-// 4) herbır kategorıde kac urun oldugunu gosteren sayı kategorılıstın sonunda parantez ıcınde gosterılecek
+function saveCart(cart){
+    sessionStorage.setItem("sepet", JSON.stringify(cart))
+}
 

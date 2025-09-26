@@ -49,7 +49,7 @@
                             <li><a href="#">Üye Ol</a></li>
                         </ul>
                     </li>
-                    <li><a href="basket.html">Sepet (0)</a></li>
+                    <li><a href="basket.html">Sepet (<span id="cart-count">0</span>)</a></li>
                 </ul>
             </div><!-- /.nav-collapse -->
         </nav>
@@ -88,8 +88,13 @@
                                                 <h3>Total</h3>
                                             </td>
                                             <td class="text-right">
-                                                <h5><strong>$24.59<br>$6.94</strong></h5>
-                                                <h3 id="total">$31.53</h3>
+                                                <h5>
+                                                    <strong> 
+                                                        <span id="subtotal"></span><br>
+                                                        <span id="shipping"></span>
+                                                    </strong>
+                                                </h5>
+                                                <h3 id="total"></h3>
                                             </td>
                                         </tr>
                                         <tr>
@@ -137,6 +142,7 @@
     </script>
     <script src="js/productsData.js"></script>
     <script src="js/productlist.js"></script>
-    <script src="js/basket.js"></script>   
+    <script src="js/basket.js"></script> 
+    <script src="js/menu.js"></script>  
 </body>
 </html>

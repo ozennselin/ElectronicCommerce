@@ -8,6 +8,16 @@ const products = [
         brand: "Toshiba",
         image: "image/bilgisayar.png",
         categoryId: 1
+      /*  HDD:"1 TB",
+        islemci:"",
+        HariciEkran:"",
+        Garanti:"2 Yıl",
+        Grafik:"",
+        EkranBoyut:"",
+        Kablo:""*/
+
+
+        
     },
     {
         id: 2,
