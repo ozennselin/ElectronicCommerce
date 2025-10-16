@@ -1,4 +1,4 @@
-const products = [
+var products = [
     //bilgisayarlar
     {
         id: 1,
