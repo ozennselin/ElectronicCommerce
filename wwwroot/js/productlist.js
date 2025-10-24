@@ -32,9 +32,9 @@ function renderProducts(liste) {
                                         <h6 class="font-weight-semibold mb-2">
                                         <a href="productDetail.html?id=${urun.id}" class="text-default">${urun.name}</a>
                                         </h6>
-                                        <a href="productDetail.html?id=${urun.id}" class="text-muted" data-abc="true">${urun.description}</a>
-                                        <p class="text-muted" style="margin:6px 0 2px;">${urun.brand}</p>
-                                        <h3 class="mb-0 font-weight-semibold">${urun.price}</h3>
+                                        <a href="productDetail.html?id=${urun.id}" class="text-muted" data-abc="true">${urun.desc ?? urun.description ??""}</a>
+                                        <p class="text-muted" style="margin:6px 0 2px;">${urun.brand ??""}</p>
+                                        <h3 class="mb-0 font-weight-semibold">${Number(urun.price).toLocaleString('tr-TR')}</h3>
                                         
                                           <div class="text-muted mb-3 text-center"></div>
                                           <div class="text-center" style="padding:10px;">
