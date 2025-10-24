@@ -24,7 +24,7 @@ function renderProducts(liste) {
                             <div class="img-box">
                                 <div class="card-img-actions">
                                     <a href="productDetail.html?id=${urun.id}" >
-                                        <img src="${urun.image}" alt="${urun.name}" class="card-img img-fluid" style="height:250px" >
+                                        <img src="${urun.image}" alt="${urun.name}" class="card-img img-fluid" >
                                     <a/>   
                                 </div>
                             </div>
@@ -34,7 +34,7 @@ function renderProducts(liste) {
                                         </h6>
                                         <a href="productDetail.html?id=${urun.id}" class="text-muted" data-abc="true">${urun.desc ?? urun.description ??""}</a>
                                         <p class="text-muted" style="margin:6px 0 2px;">${urun.brand ??""}</p>
-                                        <h3 class="mb-0 font-weight-semibold">${(urun.price).toLocaleString('tr-TR')}</h3>
+                                        <h3 class="mb-0 font-weight-semibold">${(urun.price).toLocaleString('tr-TR')}TL</h3>
                                         
                                           <div class="text-muted mb-3 text-center"></div>
                                           <div class="text-center" style="padding:10px;">
