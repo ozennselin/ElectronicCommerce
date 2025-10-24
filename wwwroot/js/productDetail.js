@@ -24,7 +24,7 @@
                                         </h6>
                                         <a href="productDetail.html?id=${getirUrun.id}" class="text-muted" data-abc="true">${getirUrun.description || ""}</a>
                                         <p class="text-muted" style="margin:6px 0 2px;">${getirUrun.brand || ""}</p>
-                                        <h3 class="mb-0 font-weight-semibold">${Number(getirUrun.price).toLocaleString("tr-TR")}</h3>
+                                        <h3 class="mb-0 font-weight-semibold">${(getirUrun.price).toLocaleString("tr-TR")}</h3>
                                         
                                           <div class="text-muted mb-3 text-center"></div>
                                           <div class="text-center" style="padding:10px;">
