@@ -11,14 +11,14 @@ Neler Yaptım
 3.	JavaScript ve jQuery ile dinamik işlemler yaptım.
 –	Ürün listelerini productData.js dosyasındaki verilerle DOM’a otomatik olarak bastım.
 –	createElement, appendChild, innerHTML gibi yöntemlerin yanında jQuery fonksiyonlarını ($(document).ready(), .append(), .on('click')) kullandım.
-–	Sepete ürün ekleme, silme, adet değiştirme ve toplam tutarı güncelleme işlemlerini DOM üzerinde anlık olarak gerçekleştirdim.
-4.	Kategori filtreleme sistemi oluşturdum.
+–	Sepete ürün ekleme, silme, sepetteki ürün adet değiştirme ve toplam tutarı güncelleme işlemlerini DOM üzerinde anlık olarak gerçekleştirerek dinamik hale getirdim
+4.	js ile  Kategori filtreleme sistemi oluşturdum.
 –	categoriesData.js dosyasındaki verileri kullanarak ürünleri kategoriye göre filtreledim.
 –	Seçilen kategoriye göre DOM içeriğini dinamik şekilde güncelledim.
-5.	Kullanıcı girişi sistemi ekledim.
+5. js ile	Kullanıcı girişi sistemi ekledim.
 –	login.js ile giriş yapan kullanıcının bilgilerini localStorage içinde sakladım.
 –	Giriş yaptıktan sonra menüdeki butonlar dinamik olarak değişiyor.
-6.	Sepet yapısını geliştirdim.
+6.	js ile Sepet yapısını geliştirdim.
 –	Sepet verilerini sessionStorage üzerinde tuttum.
 –	Fiyatları parseFloat() ve toLocaleString("tr-TR") fonksiyonlarıyla Türk Lirası formatında gösterdim.
 –	Ürün miktarı değiştiğinde toplam ve kargo ücretlerini anlık olarak DOM’da güncelledim.
