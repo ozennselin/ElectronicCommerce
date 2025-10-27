@@ -7,7 +7,7 @@ Neler Yaptım
 –	Menü, kategori, ürün listesi ve sepet sayfaları arasında geçişleri sağladım.
 2.	CSS ile tasarımı ve sayfa düzenini oluşturdum.
 –	login.css, menu.css, productList.css gibi dosyaları oluşturarak tasarımı modüler hale getirdim.
-–	Renk uyumuna, düzenli yapıya ve animasyonlara dikkat ettim.
+–	Renk uyumuna, düzenli yapıya dikkat ettim.
 3.	JavaScript ve jQuery ile dinamik işlemler yaptım.
 –	Ürün listelerini productData.js dosyasındaki verilerle DOM’a otomatik olarak bastım.
 –	createElement, appendChild, innerHTML gibi yöntemlerin yanında jQuery fonksiyonlarını ($(document).ready(), .append(), .on('click')) kullandım.
